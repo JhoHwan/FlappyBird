@@ -7,6 +7,7 @@ public class PlayerMove : MonoBehaviour
     [Header("Setting")]
     [SerializeField] [Range(1.0f, 10.0f)] private float _gravity;
     [SerializeField] [Range(1.0f, 10.0f)] private float _jumpForce;
+    private const float _rotateSpeed = -90.0f;
 
     private Rigidbody2D _rigidbody;
 
@@ -28,10 +29,17 @@ public class PlayerMove : MonoBehaviour
         {
             Jump();
         }
+
+        if (transform.rotation.eulerAngles.z > -85.0f)
+        {
+            transform.RotateAround(transform.position, transform.forward, _rotateSpeed * Time.deltaTime);
+
+        }
     }
 
     private void Jump()
     {
         _rigidbody.velocity = Vector3.up * _jumpForce;
+        transform.rotation = Quaternion.Euler(0, 0, 30.0f);
     }
 }

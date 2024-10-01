@@ -8,8 +8,14 @@ public class PlayerCollision : MonoBehaviour
     {
         if(other.tag == "Obstacle")
         {
-            GameManager.Instance.PauseGame();
+            GameManager.Instance.GameOver();
             return;
         }
+        else 
+        {
+            GameManager.Instance.IncreaseScore();
+            return;
+        }
+        
     }
 }
